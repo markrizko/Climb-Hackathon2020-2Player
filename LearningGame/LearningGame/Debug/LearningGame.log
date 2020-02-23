@@ -1,0 +1,3 @@
+﻿  Game.cpp
+  C:\Users\Cameron Burdsall\source\repos\LearningGame\LearningGame\Game.cpp(452) : warning C4715: 'Game::Tie': not all control paths return a value
+  LearningGame.vcxproj -> C:\Users\Cameron Burdsall\source\repos\LearningGame\Debug\LearningGame.exe

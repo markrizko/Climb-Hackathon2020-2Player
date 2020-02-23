@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{0C1304D4-6F7B-4104-933B-95A6873EE48B}</ProjectGuid>
+    <RootNamespace>LearningGame</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Cameron Burdsall\source\repos\LearningGame\LearningGame\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Cameron Burdsall\source\repos\LearningGame\LearningGame\Lib\x86;C:\Users\Cameron Burdsall\source\repos\LearningGame\LearningGame\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>SDL2.lib;SDL2_ttf.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Include\begin_code.h" />
+    <ClInclude Include="Include\close_code.h" />
+    <ClInclude Include="Include\SDL.h" />
+    <ClInclude Include="Include\SDL\begin_code.h" />
+    <ClInclude Include="Include\SDL\close_code.h" />
+    <ClInclude Include="Include\SDL\SDL.h" />
+    <ClInclude Include="Include\SDL\SDL_assert.h" />
+    <ClInclude Include="Include\SDL\SDL_atomic.h" />
+    <ClInclude Include="Include\SDL\SDL_audio.h" />
+    <ClInclude Include="Include\SDL\SDL_bits.h" />
+    <ClInclude Include="Include\SDL\SDL_blendmode.h" />
+    <ClInclude Include="Include\SDL\SDL_clipboard.h" />
+    <ClInclude Include="Include\SDL\SDL_config.h" />
+    <ClInclude Include="Include\SDL\SDL_config_android.h" />
+    <ClInclude Include="Include\SDL\SDL_config_iphoneos.h" />
+    <ClInclude Include="Include\SDL\SDL_config_macosx.h" />
+    <ClInclude Include="Include\SDL\SDL_config_minimal.h" />
+    <ClInclude Include="Include\SDL\SDL_config_pandora.h" />
+    <ClInclude Include="Include\SDL\SDL_config_psp.h" />
+    <ClInclude Include="Include\SDL\SDL_config_windows.h" />
+    <ClInclude Include="Include\SDL\SDL_config_winrt.h" />
+    <ClInclude Include="Include\SDL\SDL_config_wiz.h" />
+    <ClInclude Include="Include\SDL\SDL_copying.h" />
+    <ClInclude Include="Include\SDL\SDL_cpuinfo.h" />
+    <ClInclude Include="Include\SDL\SDL_egl.h" />
+    <ClInclude Include="Include\SDL\SDL_endian.h" />
+    <ClInclude Include="Include\SDL\SDL_error.h" />
+    <ClInclude Include="Include\SDL\SDL_events.h" />
+    <ClInclude Include="Include\SDL\SDL_filesystem.h" />
+    <ClInclude Include="Include\SDL\SDL_gamecontroller.h" />
+    <ClInclude Include="Include\SDL\SDL_gesture.h" />
+    <ClInclude Include="Include\SDL\SDL_haptic.h" />
+    <ClInclude Include="Include\SDL\SDL_hints.h" />
+    <ClInclude Include="Include\SDL\SDL_joystick.h" />
+    <ClInclude Include="Include\SDL\SDL_keyboard.h" />
+    <ClInclude Include="Include\SDL\SDL_keycode.h" />
+    <ClInclude Include="Include\SDL\SDL_loadso.h" />
+    <ClInclude Include="Include\SDL\SDL_log.h" />
+    <ClInclude Include="Include\SDL\SDL_main.h" />
+    <ClInclude Include="Include\SDL\SDL_messagebox.h" />
+    <ClInclude Include="Include\SDL\SDL_mouse.h" />
+    <ClInclude Include="Include\SDL\SDL_mutex.h" />
+    <ClInclude Include="Include\SDL\SDL_name.h" />
+    <ClInclude Include="Include\SDL\SDL_opengl.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles2.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles2_gl2.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles2_gl2ext.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles2_gl2platform.h" />
+    <ClInclude Include="Include\SDL\SDL_opengles2_khrplatform.h" />
+    <ClInclude Include="Include\SDL\SDL_opengl_glext.h" />
+    <ClInclude Include="Include\SDL\SDL_pixels.h" />
+    <ClInclude Include="Include\SDL\SDL_platform.h" />
+    <ClInclude Include="Include\SDL\SDL_power.h" />
+    <ClInclude Include="Include\SDL\SDL_quit.h" />
+    <ClInclude Include="Include\SDL\SDL_rect.h" />
+    <ClInclude Include="Include\SDL\SDL_render.h" />
+    <ClInclude Include="Include\SDL\SDL_revision.h" />
+    <ClInclude Include="Include\SDL\SDL_rwops.h" />
+    <ClInclude Include="Include\SDL\SDL_scancode.h" />
+    <ClInclude Include="Include\SDL\SDL_shape.h" />
+    <ClInclude Include="Include\SDL\SDL_stdinc.h" />
+    <ClInclude Include="Include\SDL\SDL_surface.h" />
+    <ClInclude Include="Include\SDL\SDL_system.h" />
+    <ClInclude Include="Include\SDL\SDL_syswm.h" />
+    <ClInclude Include="Include\SDL\SDL_test.h" />
+    <ClInclude Include="Include\SDL\SDL_test_assert.h" />
+    <ClInclude Include="Include\SDL\SDL_test_common.h" />
+    <ClInclude Include="Include\SDL\SDL_test_compare.h" />
+    <ClInclude Include="Include\SDL\SDL_test_crc32.h" />
+    <ClInclude Include="Include\SDL\SDL_test_font.h" />
+    <ClInclude Include="Include\SDL\SDL_test_fuzzer.h" />
+    <ClInclude Include="Include\SDL\SDL_test_harness.h" />
+    <ClInclude Include="Include\SDL\SDL_test_images.h" />
+    <ClInclude Include="Include\SDL\SDL_test_log.h" />
+    <ClInclude Include="Include\SDL\SDL_test_md5.h" />
+    <ClInclude Include="Include\SDL\SDL_test_memory.h" />
+    <ClInclude Include="Include\SDL\SDL_test_random.h" />
+    <ClInclude Include="Include\SDL\SDL_thread.h" />
+    <ClInclude Include="Include\SDL\SDL_timer.h" />
+    <ClInclude Include="Include\SDL\SDL_touch.h" />
+    <ClInclude Include="Include\SDL\SDL_types.h" />
+    <ClInclude Include="Include\SDL\SDL_version.h" />
+    <ClInclude Include="Include\SDL\SDL_video.h" />
+    <ClInclude Include="Include\SDL\SDL_vulkan.h" />
+    <ClInclude Include="Include\SDL_ttf.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\x86\libfreetype-6.dll" />
+    <None Include="Lib\x86\SDL2.dll" />
+    <None Include="Lib\x86\SDL2_ttf.dll" />
+    <None Include="Lib\x86\zlib1.dll" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Lib\x86\SDL2.lib">
+      <DeploymentContent>true</DeploymentContent>
+    </Library>
+    <Library Include="Lib\x86\SDL2main.lib" />
+    <Library Include="Lib\x86\SDL2test.lib" />
+    <Library Include="Lib\x86\SDL2_ttf.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets" Condition="Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" />
+    <Import Project="..\packages\sdl2.2.0.5\build\native\sdl2.targets" Condition="Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" />
+    <Import Project="..\packages\sdl2.nuget.redist.2.0.9\build\native\sdl2.nuget.redist.targets" Condition="Exists('..\packages\sdl2.nuget.redist.2.0.9\build\native\sdl2.nuget.redist.targets')" />
+    <Import Project="..\packages\sdl2.nuget.2.0.9\build\native\sdl2.nuget.targets" Condition="Exists('..\packages\sdl2.nuget.2.0.9\build\native\sdl2.nuget.targets')" />
+    <Import Project="..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" />
+    <Import Project="..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets" Condition="Exists('..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.2.0.5\build\native\sdl2.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.nuget.redist.2.0.9\build\native\sdl2.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.redist.2.0.9\build\native\sdl2.nuget.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.nuget.2.0.9\build\native\sdl2.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.nuget.2.0.9\build\native\sdl2.nuget.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.redist.2.0.15\build\native\sdl2_ttf.nuget.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2_ttf.nuget.2.0.15\build\native\sdl2_ttf.nuget.targets'))" />
+  </Target>
+</Project>
