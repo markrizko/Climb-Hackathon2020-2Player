@@ -1,0 +1,59 @@
+2 Player Climb
+
+	This is a two player version of my card game Climb. The objective is to "climb" through
+	your opponent's deck and empty their deck faster than yours.
+
+
+Deck:
+	-Deck is split between black and red decks. 
+
+Card Values:
+	-All numeric cards (2-10) are worth their values
+	-Royalty cards (King, Queen, Jack) are all valued at 10
+	-Royalty cards have seniority over each other
+		-Kings beats a Queen and Jack and 10, a Queen beats a Jack and 10, and a Jack beats a 10.
+	-Ace counts for 11
+
+Starting the game:
+	-Black and Red decks are shuffled and one King from each deck is pulled out.
+		-Doesn't matter which king
+	-Three cards are drawn to each respective player from their deck and placed down.
+		-All cards in play are visible to both players.
+	-Coin flip (50/50 rand()) for turn.
+	
+Player Turn:
+	-On player turn, the player can use any combination (mathematically and numerically) 
+	of the cards in their hand to "attack" any combination of cards in the opponent's deck. 
+		-For example, I can play the 2 and the 6 in my hand to beat my opponent's 8. 
+		-Players can only move once per turn
+	-After a player has played their turn, a "draw" period commences, where the playing field
+		is refilled to three cards of each color.
+	-After the draw period, the turn alternates to the opponent. 
+	
+Winning the game:
+	-A player wins when he or she empties the deck of their opponent.
+	-Score is calculated based on the remaining cards the winner has not played.
+
+Ties:
+	-A player can also choose to match up against their opponent with the same numerical value
+		of cards. When this happens, the top card of each deck is pulled on top of that combination,
+		and the higher card wins. 
+		-If there is a tie again, keep going until there is not.
+
+Extra Notes For Clarification:
+	-Legal Combinations:
+		-A Queen and a Jack would beat two Jacks.
+	-Ace does not have seniority over royal cards and royal cards do not have seniority over
+		the Ace.
+	-If a player attacks a King with their King, no tie period commences, both cards are discarded.
+	-If a tie happens and one or both teams does not have enough cards to play the tie, both cards
+		are discarded and a tie period does not commence.
+	-If the game ends and all cards from both deck have been discarded, meaning
+		only the two final kings are left, the game ends in a TIE. 
+	-You can play all your cards at once if you choose to.
+		-For example, if you had 2 - 2 - 4 you could play all three of those to beat a single 7
+		or tie an 8 etc.
+	
+
+**unfinished but this is the groundwork just gotta throw more rules in to account for special cases**
+	
