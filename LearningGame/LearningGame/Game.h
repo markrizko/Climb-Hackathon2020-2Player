@@ -29,7 +29,7 @@ public:
 	void Turn(); 
 	int compare(); // compares cards - returns 0 if invalid move - 1 if win - 2 if draw
 	//void winMsg(); // displays who wins at end of game
-
+	bool question();
 	//SDL Operations
 	void onMouseClick(int mousex, int mousey);
 	//bool buttonPress(SDL_Renderer* r, button_t* btn);
@@ -55,11 +55,12 @@ private:
 	std::list <int> selectedRed;
 	std::list <int> selectedBlack;
 	//Deck of cards 
-	Card *redInPlay[3];
+	Card redInPlay[3];
 	int redNumIP; // # of red cards in play
-	Card *blackInPlay[3];
+	Card blackInPlay[3];
 	int blackNumIP; // # of black cards in play
 		//Card arrays to hold cards in play
 
 	bool invalidMove;
+	bool initFlag;
 };

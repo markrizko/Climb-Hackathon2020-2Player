@@ -1,3 +1,11 @@
+/*
+Hack For Humanity 2020 Project by
+Mark Rizko, Cameron Burdsall, and Fernando Camou
+
+Climb: A 2 Player Card game written by Mark Rizko written using
+SDL2 in C++ in Visual Studio.
+*/
+
 #include <SDL.h>
 #include "Game.h"
 

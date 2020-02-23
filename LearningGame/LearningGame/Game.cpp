@@ -68,6 +68,7 @@ Game::Game()
 	:window(nullptr), renderer(nullptr), running (true)
 {
 	//window = nullptr;
+	initFlag = false;
 }
 
 bool Game::init()
@@ -112,9 +113,9 @@ bool Game::init()
 
 	//define button
 	//button_t new_button;
-	goButton.color.r = 255;
-	goButton.color.g = 255;
-	goButton.color.b = 255;
+	goButton.color.r = 50;
+	goButton.color.g = 200;
+	goButton.color.b = 50;
 	goButton.color.a = 255;
 	goButton.draw_rect.x = GOBUTTONX;
 	goButton.draw_rect.y = GOBUTTONY;
@@ -127,16 +128,21 @@ bool Game::init()
 	redDeck = new Deck();
 	blackDeck = new Deck();
 
+	redDeck->FillDeck();
+	blackDeck->FillDeck();
+
 	//fill playspace
 	Draw();
 
 	invalidMove = false;
-
+	initFlag = true;
+	turn = false; // black first every time
 	return true;
 }
 
 void Game::runGame()
 {
+	genOutput();
 	while (running)
 	{
 		processInput();
@@ -242,6 +248,38 @@ void Game::updateGame()
 	}
 	else if (!goButton.pressed) return;
 	Turn();
+	while (!question());
+}
+
+bool Game::question()
+{
+	int sel = rand() % 3;
+	int p = rand() % 100;
+	int q = rand() % 100;
+	int answer;
+	int correctAnswer;
+	switch (sel) {
+	case 0:
+		std::cout << p << " + " << q << " = " << std::endl;
+		correctAnswer = p + q;
+		std::cin >> answer;
+		if (answer == correctAnswer) return true;
+		else return false;
+	case 1:
+		std::cout << p << " - " << q << " = " << std::endl;
+		correctAnswer = p - q;
+		std::cin >> answer;
+		if (answer == correctAnswer) return true;
+		else return false;
+	case 2:
+		std::cout << p << " * " << q << " = " << std::endl;
+		correctAnswer = p * q;
+		std::cin >> answer;
+		if (answer == correctAnswer) return true;
+		else return false;
+	default:
+		return true;
+	}
 }
 
 void Game::genOutput()
@@ -249,6 +287,7 @@ void Game::genOutput()
 	SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
 	SDL_RenderClear(renderer);
 	displayCards();
+	SDL_RenderPresent(renderer);
 }
 
 const char* faceValue(int tag)
@@ -267,7 +306,7 @@ const char* faceValue(int tag)
 			return "K";
 		}
 	}
-	char* result ='\0';
+	char* result = new char[3];
 	SDL_itoa(tag, result, 10);
 	return result;
 }
@@ -323,7 +362,12 @@ void Game::displayCards()
 		CARDHEIGHT
 	};
 	SDL_RenderFillRect(renderer, &blackCard3);
+	SDL_RenderPresent(renderer);
 	TTF_Font* font = TTF_OpenFont("comic.ttf", 12);
+	if (font == NULL)
+	{
+		//std::cout << TTF_GetError << std::endl;
+	}
 	//Writing Black Card Values
 	SDL_Color color = {0, 0, 0};
 	int textW, textH;
@@ -331,9 +375,19 @@ void Game::displayCards()
 	SDL_Rect dstrect;
 	SDL_Texture* texture;
 	SDL_Surface* surface;
-	if (blackInPlay[0]->getTag() != NULL)
+	
+	surface = TTF_RenderText_Solid(font, "Climb", color);
+	texture = SDL_CreateTextureFromSurface(renderer, surface);
+	SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
+	dstrect = { 5, 5, textW, textH };
+	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+	SDL_RenderPresent(renderer);
+
+	//font = TTF_OpenFont("comic.ttf", 12);
+	
+	if (blackInPlay[0].getTag() != NULL)
 	{
-		fv = (char*)faceValue(blackInPlay[0]->getTag());
+		fv = (char*)faceValue(blackInPlay[0].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -343,9 +397,9 @@ void Game::displayCards()
 	}
 
 	
-	if (blackInPlay[1]->getTag() != NULL)
+	if (blackInPlay[1].getTag() != NULL)
 	{
-		fv = (char*)faceValue(blackInPlay[1]->getTag());
+		fv = (char*)faceValue(blackInPlay[1].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -354,9 +408,9 @@ void Game::displayCards()
 		SDL_RenderPresent(renderer);
 	}
 
-	if (blackInPlay[2]->getTag() != NULL)
+	if (blackInPlay[2].getTag() != NULL)
 	{
-		fv = (char*)faceValue(blackInPlay[2]->getTag());
+		fv = (char*)faceValue(blackInPlay[2].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -367,9 +421,9 @@ void Game::displayCards()
 
 	color = { 200, 0, 0 };
 
-	if (redInPlay[0]->getTag() != NULL)
+	if (redInPlay[0].getTag() != NULL)
 	{
-		fv = (char*)faceValue(redInPlay[0]->getTag());
+		fv = (char*)faceValue(redInPlay[0].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -379,9 +433,9 @@ void Game::displayCards()
 	}
 
 
-	if (redInPlay[1]->getTag() != NULL)
+	if (redInPlay[1].getTag() != NULL)
 	{
-		fv = (char*)faceValue(redInPlay[1]->getTag());
+		fv = (char*)faceValue(redInPlay[1].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -390,9 +444,9 @@ void Game::displayCards()
 		SDL_RenderPresent(renderer);
 	}
 
-	if (redInPlay[2]->getTag() != NULL)
+	if (redInPlay[2].getTag() != NULL)
 	{
-		fv = (char*)faceValue(redInPlay[2]->getTag());
+		fv = (char*)faceValue(redInPlay[2].getTag());
 		surface = TTF_RenderText_Solid(font, fv, color);
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
@@ -403,6 +457,8 @@ void Game::displayCards()
 
 	SDL_SetRenderDrawColor(renderer, goButton.color.r, goButton.color.g, goButton.color.b, goButton.color.a);
 	SDL_RenderFillRect(renderer, &goButton.draw_rect);
+
+	//SDL_RenderPresent(renderer);
 }
 
 
@@ -410,12 +466,11 @@ void Game::displayCards()
 void Game::Draw(){
         for (int i = 0; i < 3; i++){
             if (redInPlay[i] == NULL){
-				*redInPlay[i] = redDeck->getCard();
-			}
-        }
+				redInPlay[i] = redDeck->getCard();
+			}        }
         for (int j = 0; j < 3; j++){
 			if (blackInPlay[j] == NULL){
-				*blackInPlay[j] = blackDeck->getCard();
+				blackInPlay[j] = blackDeck->getCard();
 			}
         }
 }
@@ -499,13 +554,14 @@ void Game::Turn(){
 	else{
 		Draw();
 	}
+	turn = !turn;
 }
 
 int Game::redTotal(){//dont  need an argument, turn is already a class variable
     int sum = 0;
     for (std::list<int>::iterator i = selectedRed.begin(); i != selectedRed.end(); ++i){
         // FIX with iterator for selectedRed/Black list
-        sum+=(redInPlay[*i]->getValue());
+        sum+=(redInPlay[*i].getValue());
     }
     return sum;
 }
@@ -513,7 +569,7 @@ int Game::blackTotal(){
     int sum = 0;
     for (std::list<int>::iterator i = selectedBlack.begin(); i != selectedBlack.end(); ++i){
         // FIX with iterator for selectedRed/Black list
-        sum+=(blackInPlay[*i]->getValue());
+        sum+=(blackInPlay[*i].getValue());
     }
     return sum;
 }
@@ -526,13 +582,13 @@ int Game::compare(){
     else if (turn && (redTotal() == blackTotal())){
         int r_tag = 0, b_tag = 0;
         for(std::list<int>::iterator i = selectedRed.begin(); i != selectedRed.end(); ++i){
-            if (redInPlay[*i]->getTag() > r_tag){
-                r_tag = redInPlay[*i]->getTag();
+            if (redInPlay[*i].getTag() > r_tag){
+                r_tag = redInPlay[*i].getTag();
             }
         }
         for(std::list<int>::iterator i = selectedBlack.begin(); i != selectedBlack.end(); ++i){
-            if (blackInPlay[*i]->getTag() > b_tag){
-                b_tag = blackInPlay[*i]->getTag();
+            if (blackInPlay[*i].getTag() > b_tag){
+                b_tag = blackInPlay[*i].getTag();
             }
         }
         if (r_tag == b_tag){
@@ -556,13 +612,13 @@ int Game::compare(){
     else if (!turn && (blackTotal() == redTotal())){
         int r_tag = 0, b_tag = 0;
         for(std::list<int>::iterator i = selectedRed.begin(); i != selectedRed.end(); ++i){
-            if (redInPlay[*i]->getTag() > r_tag){
-                r_tag = redInPlay[*i]->getTag();
+            if (redInPlay[*i].getTag() > r_tag){
+                r_tag = redInPlay[*i].getTag();
             }
         }
         for(std::list<int>::iterator i = selectedBlack.begin(); i != selectedBlack.end(); ++i){
-            if (blackInPlay[*i]->getTag() > b_tag){
-                b_tag = blackInPlay[*i]->getTag();
+            if (blackInPlay[*i].getTag() > b_tag){
+                b_tag = blackInPlay[*i].getTag();
             }
         }
         if (r_tag == b_tag){

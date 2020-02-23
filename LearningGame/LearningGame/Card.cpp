@@ -7,18 +7,18 @@ Card::~Card(){
 }
 */
 Card::Card(){
-	cardTag = 1;
-	value = 1;
-	std::cout << "Uh Oh..." << std::endl;
+	cardTag = NULL;
+	value = NULL;
+	//std::cout << "Uh Oh..." << std::endl;
 }
 
 Card::Card(const Card& source) {
-	cardTag = source.tag;
+	cardTag = source.cardTag;
 	value = source.value;
 }
 
 Card::Card(int tag){
-	std::cout << tag << std::endl << ++counter << std::endl;
+	//std::cout << tag << std::endl << ++counter << std::endl;
     cardTag = tag;
     if (tag >= 2 && tag <= 10){
         value = tag;
@@ -30,7 +30,7 @@ Card::Card(int tag){
         value = 10;
     }
     else{
-        std::cout << "Invalid Tag!" << std::endl;
+        //std::cout << "Invalid Tag!" << std::endl;
         //exit(1);
     }
 }
@@ -51,10 +51,15 @@ bool Card::isAce(){
 }
 
 Deck::Deck(){
-	int i;
+	//cDeck.clear();
+    cardsLeft = 0;
+}
+
+void Deck::FillDeck(){
+    int i; 
     for (i = 1; i < 14; i++){
         Card *in = new Card(i);
-        cDeck.push_back(*in); // insert two copies of each tag
+        cDeck.push_back(*in);
         cDeck.push_back(*in);
     }
     cardsLeft = 26;
@@ -108,12 +113,16 @@ bool operator!=(const Card& c1, const Card& c2){
 }
 
 Card Card::operator=(const Card& source){
-    if (&source == NULL){ 
-        value = 0;
-        cardTag = 0;
+    if (source == NULL){ 
+        value = NULL;
+        cardTag = NULL;
+        return *this;
+    }
+    else if (this == nullptr){
         return NULL;
     }
     else{
+        //std::cout << source.value << std::endl;
         value = source.value; //this causes a memory access exception
         cardTag = source.cardTag;
         return *this;
